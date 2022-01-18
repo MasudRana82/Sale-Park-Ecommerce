@@ -27,4 +27,9 @@ Route::get('/dashboard',[SuperAdminController::class,'dashboard']);
 Route::get('/logout',[SuperAdminController::class,'logout']);
 
 //category routes here
+//  Route::get('/edit{category}',[CategoryController::class,'edit']); 
+//  Route::PUT('/update{category}',[CategoryController::class,'update']); 
+//  Route:PUT('/delete{category}',[CategoryController::class,'destroy']); 
+
 Route::resource('/categories/',CategoryController::class);
+Route::get('/cat-status{category}',[CategoryController::class,'change_status']);

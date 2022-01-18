@@ -66,9 +66,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function change_status(Category $category)
     {
-        //
+        if($category->status==1){
+            $category->update(['status'=>0]);
+        }
+        else
+        {
+         $category->update(['status'=>1]);
+        }
+        return redirect()->back()->with('massege','Status change successfully');
+
     }
 
     /**
@@ -77,10 +85,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit',compact('category'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -89,9 +98,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $update=$category->update([
+             'description'=>$request->description,
+            'name'=>$request->name,
+           
+            'image'=>$request->file('image')->store('category'),
+        ]);
+        if ($update){
+            return redirect('/categories')->with('massege','category update successfully!!');
+        }
     }
 
     /**
@@ -100,8 +117,14 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        $result=$category->delete();
+        if($result){
+               return redirect()->back()->with('massege','Category delete successfully!!');  
+        }
+      
+          
+        
     }
 }

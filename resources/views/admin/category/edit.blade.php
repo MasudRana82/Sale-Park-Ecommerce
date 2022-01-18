@@ -26,19 +26,23 @@
 
                     </p>
                
-                <h2><i class="halflings-icon edit"></i><span class="break"></span>Add Category</h2>
+                <h2><i class="halflings-icon edit"></i><span class="break"></span>Edit Category</h2>
                 
 
             </div>
 
             <div class="box-content">
-                <form class="form-horizontal" action="{{url('/categories')}}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form class="form-horizontal" action="{{url('/categories/'.$category->id)}}" method="post" enctype="multipart/form-data">
+                      
+                    @csrf 
+                   @method('PUT') 
+                    {{-- always use 'PUT' in update operation --}}
+                  
                     <fieldset>
                         <div class="control-group">
                             <label class="control-label" for="date01">Category Name</label>
                             <div class="controls">
-                                <input type="text" class="input-xlarge" name="name" required>
+                                <input type="text" class="input-xlarge" name="name" required value="{{$category->name}}">
                             </div>
                         </div>
 
@@ -46,7 +50,7 @@
                         <div class="control-group hidden-phone">
                             <label class="control-label" for="textarea2">Category Description</label>
                             <div class="controls">
-                                <textarea class="cleditor" name="description" rows="3" required></textarea>
+                                <textarea class="cleditor" name="description" rows="3" required>{{$category->description}}</textarea>
                             </div>
 
                         </div>
@@ -60,7 +64,7 @@
 
 
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">Add Category</button>
+                            <button type="submit" class="btn btn-primary">update Category</button>
                         </div>
                     </fieldset>
                 </form>

@@ -45,33 +45,40 @@
 									<img src="{{asset('/storage/'.$category->image)}}" style="height: 80px" alt="pic" >
 								</td>
                                 <td class="center">
-									<span class="label label-success">active</span>
+									@if ($category->status==1)
+										<span class="label label-success">active</span>
+									@else
+										<span class="label label-danger">deactive</span>
+									@endif
+									
 								</td>
 								<td class="row">
 								<div class="span3"></div>
 								<div class="span2">
-								
-										
 									
-									
-										<a class="btn btn-success" href="#">
+									@if($category->status==1)
+										<a class="btn btn-success" href="{{url('/cat-status'.$category->id)}}">
 										<i class="halflings-icon white thumbs-down"></i>  
 									</a>
-										
-								
-										
 									
-									
+									@else
+									 <a class="btn btn-danger" href="{{url('/cat-status'.$category->id)}}">
+										<i class="halflings-icon white thumbs-up"></i>  
+									</a>
+									@endif
+
 								</div>
 								<div class="span2">
-									<a class="btn btn-info" href="#">
+									<a class="btn btn-info" href="{{url('/categories/'.$category->id.'/edit')}}">
 										<i class="halflings-icon white edit"></i>  
 									</a>
 								</div>
 								<div class="span2">
-									<a class="btn btn-danger" href="#">
-										<i class="halflings-icon white trash"></i> 
-									</a>
+									<form method="post" action="{{url('/categories/'.$category->id)}}">
+									@csrf
+									@method('delete') 
+								<button class="btn btn-danger" type="submit"> <i class="halflings-icon white trash"></i></button>
+									</form>
 								</div>
 									<div class="span3"></div>
 								</td>
