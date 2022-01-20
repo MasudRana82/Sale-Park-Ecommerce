@@ -4,9 +4,9 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Bootstrap Metro Dashboard </title>
+	<title>Salepark Dashboard</title>
 	<meta name="description" content="Bootstrap Metro Dashboard">
-	<meta name="author" content="Dennis Ji">
+	
 	<meta name="keyword" content="Metro, Metro UI, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
 	
@@ -344,6 +344,14 @@
 							<ul>
 								<li><a class="submenu" href="{{url('/categories/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add Category</span></a></li>
 								<li><a class="submenu" href="/categories/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Category</span></a></li>
+							
+							</ul>	
+						</li>
+						<li> 
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Sub Category</span><span class="label label-important"> 2 </span></a>
+							<ul>
+								<li><a class="submenu" href="{{url('/sub-categories/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add sub Category</span></a></li>
+								<li><a class="submenu" href="/sub-categories/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All sub Category</span></a></li>
 							
 							</ul>	
 						</li>

@@ -3,9 +3,9 @@
 <div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-                     <p class="alert-success">
+                    <p class="alert-success">
                	@php
-					  $msg=Session::get('messege');
+					  $msg=Session::get('massege');
                             if($msg){
                                 echo "$msg";
                                 Session::put('messege',null);
@@ -13,8 +13,7 @@
 				   @endphp
                           
 						</p>
-
-						<h2><i class="halflings-icon user"></i><span class="break"></span>Categories</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>SubCategories</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -25,29 +24,30 @@
 						<table class="table table-striped table-bordered bootstrap-datatable datatable">
 						  <thead>
 							  <tr>
-								  <th style="width: 5%" >id</th>
-								  <th style="width: 15%" >Category_name</th>
+								  <th style="width: 5%" >Id</th>
+								  <th style="width: 15%" >Sub Category name</th>
+								  <th style="width: 15%" >Category Name</th>
+								  
 								  <th style="width: 30%">Description</th>
-                                  <th style="width: 15%">Image</th>
+                               
 								  <th style="width: 15%">Status</th>								  
 								  <th style="width: 20%">action</th>
 							  </tr>
 						  </thead> 
-                                 @foreach ($categories as $category)
+                                 @foreach ($subcategories as $subcategory)
 						  <tbody>
                          
                                   
                               
 							<tr>
-								<td>{{$category->id}}</td>
-								<td class="center">{{$category->name}}</td>
-								<td class="center">{!!$category->description!!}</td>
+								<td>{{$subcategory->id}}</td>
+								<td class="center">{{$subcategory->name}}</td>
+								<td class="center">{{$subcategory->category->name}}</td>
+								<td class="center">{!!$subcategory->description!!}</td>
 								
+                                
                                 <td class="center">
-									<img src="{{asset('/storage/'.$category->image)}}" style="height: 80px" alt="pic" >
-								</td>
-                                <td class="center">
-									@if ($category->status==1)
+									@if ($subcategory->status==1)
 										<span class="label label-success">active</span>
 									@else
 										<span class="label label-danger">deactive</span>
@@ -58,25 +58,25 @@
 								<div class="span3"></div>
 								<div class="span2">
 									
-									@if($category->status==1)
-										<a class="btn btn-success" href="{{url('/cat-status'.$category->id)}}">
+									@if($subcategory->status==1)
+										<a class="btn btn-success" href="{{url('/subcat-status'.$subcategory->id)}}">
 										<i class="halflings-icon white thumbs-down"></i>  
 									</a>
 									
 									@else
-									 <a class="btn btn-danger" href="{{url('/cat-status'.$category->id)}}">
+									 <a class="btn btn-danger" href="{{url('/subcat-status'.$subcategory->id)}}">
 										<i class="halflings-icon white thumbs-up"></i>  
 									</a>
 									@endif
 
 								</div>
 								<div class="span2">
-									<a class="btn btn-info" href="{{url('/categories/'.$category->id.'/edit')}}">
+									<a class="btn btn-info" href="{{url('/sub-categories/'.$subcategory->id.'/edit')}}">
 										<i class="halflings-icon white edit"></i>  
 									</a>
 								</div>
 								<div class="span2">
-									<form method="post" action="{{url('/categories/'.$category->id)}}">
+									<form method="post" action="{{url('/sub-categories/'.$subcategory->id)}}">
 									@csrf
 									@method('delete') 
 								<button class="btn btn-danger" type="submit"> <i class="halflings-icon white trash"></i></button>

@@ -5,6 +5,7 @@ Use App\Http\Controllers\HomeController;
 Use App\Http\Controllers\AdminController;
 Use App\Http\Controllers\SuperAdminController;
 Use App\Http\Controllers\CategoryController;
+Use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,15 @@ Route::post('/admin-dashboard',[AdminController::class,'show_dashboard']);
 Route::get('/dashboard',[SuperAdminController::class,'dashboard']);
 Route::get('/logout',[SuperAdminController::class,'logout']);
 
-//category routes here
+//category routes here(optional)
 //  Route::get('/edit{category}',[CategoryController::class,'edit']); 
 //  Route::PUT('/update{category}',[CategoryController::class,'update']); 
 //  Route:PUT('/delete{category}',[CategoryController::class,'destroy']); 
 
+//Category routes here
 Route::resource('/categories/',CategoryController::class);
 Route::get('/cat-status{category}',[CategoryController::class,'change_status']);
+
+//sub-category routes here
+Route::resource('/sub-categories/',SubCategoryController::class);
+Route::get('/subcat-status{subcategory}',[SubCategoryController::class,'change_status']);

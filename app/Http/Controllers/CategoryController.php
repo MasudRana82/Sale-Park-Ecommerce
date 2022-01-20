@@ -75,6 +75,7 @@ class CategoryController extends Controller
         {
          $category->update(['status'=>1]);
         }
+        
         return redirect()->back()->with('massege','Status change successfully');
 
     }
