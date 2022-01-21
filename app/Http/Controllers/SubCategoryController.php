@@ -64,7 +64,7 @@ class SubCategoryController extends Controller
          $subcategory->update(['status'=>1]);
         }
         
-        return redirect()->back()->with('massege','Status change successfully');
+        return redirect()->back()->with('messege','Status change successfully');
 
     }
     /**
@@ -73,9 +73,10 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubCategory $subcategory,$id)
+    public function edit(SubCategory $subcategory)
     {
-        return view('admin.subcategory.edit');
+        $categories=Category::all();
+        return view('admin.subcategory.edit',compact('subcategory','categories'));
     }
 
     /**
@@ -85,9 +86,17 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SubCategory $subcategory)
     {
-        //
+       $result = $subcategory->update([
+            'name'=>$request->name,
+            'cat_id'=>$request->category,
+            'description'=>$request->description,
+       ]);
+       if($result){
+               return redirect('/sub-categories')->with('messege','SubCategory update successfully!!');  
+        }
+      
     }
 
     /**
@@ -96,8 +105,15 @@ class SubCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SubCategory $subcategory)
     {
-        //
+         $result=$subcategory->delete();
+        if($result){
+               return redirect()->back()->with('messege','Category delete successfully!!');  
+        }
+      
+          
+        
+    
     }
 }

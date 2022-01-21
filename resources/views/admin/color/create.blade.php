@@ -15,7 +15,7 @@
         <div class="box span12">
             
             <div class="box-header" data-original-title>
-                    <p class="alert-success">
+                 <p class="alert-success">
                 <?php
                             $msg=Session::get('messege');
                             if($msg){
@@ -26,23 +26,19 @@
 
                     </p>
                
-                <h2><i class="halflings-icon edit"></i><span class="break"></span>Edit Category</h2>
+                <h2><i class="halflings-icon edit"></i><span class="break"></span>Add Category</h2>
                 
 
             </div>
 
             <div class="box-content">
-                <form class="form-horizontal" action="{{url('/update'.$category->id)}}" method="post" enctype="multipart/form-data">
-                      
-                @csrf 
-                   @method('PUT') 
-                    {{-- always use 'PUT' in update operation --}}
-                  
+                <form class="form-horizontal" action="{{url('/categories')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <fieldset>
                         <div class="control-group">
                             <label class="control-label" for="date01">Category Name</label>
                             <div class="controls">
-                                <input type="text" class="input-xlarge" name="name" required value="{{$category->name}}">
+                                <input type="text" class="input-xlarge" name="name" required>
                             </div>
                         </div>
 
@@ -50,7 +46,7 @@
                         <div class="control-group hidden-phone">
                             <label class="control-label" for="textarea2">Category Description</label>
                             <div class="controls">
-                                <textarea class="cleditor" name="description" rows="3" required>{{$category->description}}</textarea>
+                                <textarea class="cleditor" name="description" rows="3" required></textarea>
                             </div>
 
                         </div>
@@ -64,7 +60,7 @@
 
 
                         <div class="form-actions">
-                            <button type="submit" class="btn btn-primary">update Category</button>
+                            <button type="submit" class="btn btn-primary">Add Category</button>
                         </div>
                     </fieldset>
                 </form>

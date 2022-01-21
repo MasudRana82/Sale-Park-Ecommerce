@@ -24,7 +24,7 @@
 
                     </p>
 
-						<h2><i class="halflings-icon user"></i><span class="break"></span>Categories</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span>UNIT</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -36,14 +36,14 @@
 						  <thead>
 							  <tr>
 								  <th style="width: 5%" >id</th>
-								  <th style="width: 15%" >Category_name</th>
+								  <th style="width: 15%" >Unit Name</th>
 								  <th style="width: 30%">Description</th>
-                                  <th style="width: 15%">Image</th>
+                                  
 								  <th style="width: 15%">Status</th>								  
 								  <th style="width: 20%">action</th>
 							  </tr>
 						  </thead> 
-                                 @foreach ($categories as $category)
+                                 @foreach ($units as $category)
 						  <tbody>
                          
                                   
@@ -53,9 +53,7 @@
 								<td class="center">{{$category->name}}</td>
 								<td class="center">{!!$category->description!!}</td>
 								
-                                <td class="center">
-									<img src="{{asset('/storage/'.$category->image)}}" style="height: 80px" alt="pic" >
-								</td>
+                             
                                 <td class="center">
 									@if ($category->status==1)
 										<span class="label label-success">active</span>
@@ -69,12 +67,12 @@
 								<div class="span2">
 									
 									@if($category->status==1)
-										<a class="btn btn-success" href="{{url('/cat-status'.$category->id)}}">
+										<a class="btn btn-success" href="{{url('/brand-status'.$category->id)}}">
 										<i class="halflings-icon white thumbs-down"></i>  
 									</a>
 									
 									@else
-									 <a class="btn btn-danger" href="{{url('/cat-status'.$category->id)}}">
+									 <a class="btn btn-danger" href="{{url('/brand-status'.$category->id)}}">
 										<i class="halflings-icon white thumbs-up"></i>  
 									</a>
 									@endif

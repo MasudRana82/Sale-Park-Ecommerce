@@ -3,16 +3,16 @@
 <div class="row-fluid sortable">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-                    <p class="alert-success">
-               	@php
-					  $msg=Session::get('massege');
+                       <p class="alert-success">	
+                <?php
+                            $msg=Session::get('messege');
                             if($msg){
                                 echo "$msg";
-                                Session::put('messege',null);
-                            }   
-				   @endphp
-                          
-						</p>
+                                 Session::put('messege',null);
+                            }
+                ?>
+
+                    </p>
 						<h2><i class="halflings-icon user"></i><span class="break"></span>SubCategories</h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
@@ -71,14 +71,14 @@
 
 								</div>
 								<div class="span2">
-									<a class="btn btn-info" href="{{url('/sub-categories/'.$subcategory->id.'/edit')}}">
+									<a class="btn btn-info" href="{{url('/sub-categories/edit'.$subcategory->id)}}">
 										<i class="halflings-icon white edit"></i>  
 									</a>
 								</div>
 								<div class="span2">
-									<form method="post" action="{{url('/sub-categories/'.$subcategory->id)}}">
+									<form method="post" action="{{url('/sub-categories/delete'.$subcategory->id)}}">
 									@csrf
-									@method('delete') 
+									@method('PUT') 
 								<button class="btn btn-danger" type="submit"> <i class="halflings-icon white trash"></i></button>
 									</form>
 								</div>

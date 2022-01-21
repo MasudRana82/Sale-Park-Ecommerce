@@ -32,7 +32,7 @@
             </div>
 
             <div class="box-content">
-                <form class="form-horizontal" action="{{url('/sub-categories/'.$category->id)}}" method="post" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{url('/sub-categories/update'.$subcategory->id)}}" method="post" >
                       
                     @csrf 
                    @method('PUT') 
@@ -61,7 +61,7 @@
 
 
                         <div class="control-group hidden-phone">
-                            <label class="control-label" for="textarea2">Category Description</label>
+                            <label class="control-label" for="textarea2">Description</label>
                             <div class="controls">
                                 <textarea class="cleditor" name="description" rows="3" required>{{$subcategory->description}}</textarea>
                             </div>

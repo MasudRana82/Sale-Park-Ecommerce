@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
+use App\Models\Unit;
 
-class CategoryController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories =Category::all();
-      return view('admin.category.index',compact('categories'));
+        $units = Unit::all();
+         return view('admin.unit.index',compact('units'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.unit.create');
     }
 
     /**
@@ -34,25 +34,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+        public function store(Request $request)
     {
-        $category= new Category;
+        $category= new Unit;
         $category->id=$request->category;
         $category->name=$request->name;
         $category->description=$request->description;
 
-        //image save in db in one line
-        $category->image=$request->image->store('category'); 
-
-        //image save in db in multiple line
-        // if($request->hasfile('image'))
-        // {
-        //     $file=$request->file('image');
-        //     $extension = $file->getClientOriginalExtension();
-        //     $filename = time().'.'.$extension;  //time.extention diye file er nam hobe
-        //     $file->move('category',$filename); //category folder diye public e save hobe
-        //     $category->image=$filename;
-        // }
+       
         
          $category->save(); //all data save
          return redirect()->back()->with('messege','Category created successfully'); //back function j page e cilo oi page e abr niya ase
