@@ -45,8 +45,8 @@
                         <div class="control-group">
                             <label class="control-label" for="date01">Select Category</label>
                             <div class="controls">
-                                 <select name="category">
-                                <option>select category</option>
+                                 <select name="category" required>
+                                <option >select category</option>
                               
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}" >{{$category->name}}</option> 

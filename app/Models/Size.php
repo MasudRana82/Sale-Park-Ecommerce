@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
     use HasFactory;
-    protected $fillable =['id','name','description'];
+    protected $fillable =['id','name','status'];
 }

@@ -336,11 +336,18 @@
 					<ul class="nav nav-tabs nav-stacked main-menu">
 						<li><a href="{{url('/dashboard')}} "><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>	
 						{{-- <li><a href="messages.html"><i class="icon-envelope"></i><span class="hidden-tablet"> Messages</span></a></li>
-						<li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li>
-						<li><a href="ui.html"><i class="icon-eye-open"></i><span class="hidden-tablet"> UI Features</span></a></li>
-						<li><a href="widgets.html"><i class="icon-dashboard"></i><span class="hidden-tablet"> Widgets</span></a></li> --}}
+						<li><a href="tasks.html"><i class="icon-tasks"></i><span class="hidden-tablet"> Tasks</span></a></li> --}}
 						<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Category</span><span class="label label-important"> 2 </span></a>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Products</span><span class="label label-important"></span></a>
+							<ul>
+								<li><a class="submenu" href="{{url('/product/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add Products</span></a></li>
+								<li><a class="submenu" href="/product/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Products</span></a></li>
+							
+							</ul>	
+						</li>
+						
+						<li> 
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Category</span><span class="label label-important"></span></a>
 							<ul>
 								<li><a class="submenu" href="{{url('/categories/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add Category</span></a></li>
 								<li><a class="submenu" href="/categories/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Category</span></a></li>
@@ -348,7 +355,7 @@
 							</ul>	
 						</li>
 						<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Sub Category</span><span class="label label-important"> 2 </span></a>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Sub Category</span><span class="label label-important"></span></a>
 							<ul>
 								<li><a class="submenu" href="{{url('/sub-categories/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add sub Category</span></a></li>
 								<li><a class="submenu" href="/sub-categories/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All sub Category</span></a></li>
@@ -357,7 +364,7 @@
 						</li>
 
 							<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Brand</span><span class="label label-important"> 2 </span></a>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Brand</span><span class="label label-important"></span></a>
 							<ul>
 								<li><a class="submenu" href="{{url('/brand/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add  Brand</span></a></li>
 								<li><a class="submenu" href="/brand/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Brand</span></a></li>
@@ -366,7 +373,7 @@
 						</li>
 						{{-- unit module --}}
 						<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Unit</span><span class="label label-important"> 2 </span></a>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Unit</span><span class="label label-important"></span></a>
 							<ul>
 								<li><a class="submenu" href="{{url('/unit/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add  Unit</span></a></li>
 								<li><a class="submenu" href="/unit/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Unit</span></a></li>
@@ -374,19 +381,9 @@
 							</ul>	
 						</li>
 
-						{{-- color module --}}
+							{{-- size module  --}}
 						<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Color</span><span class="label label-important"> 2 </span></a>
-							<ul>
-								<li><a class="submenu" href="{{url('/color/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add  Color</span></a></li>
-								<li><a class="submenu" href="/color/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Color</span></a></li>
-							
-							</ul>	
-						</li>
-
-						{{-- size module  --}}
-						<li> 
-							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Size</span><span class="label label-important"> 2 </span></a>
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Size</span><span class="label label-important"></span></a>
 							<ul>
 								<li><a class="submenu" href="{{url('/size/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add  Size</span></a></li>
 								<li><a class="submenu" href="/size/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Size</span></a></li>
@@ -394,12 +391,24 @@
 							</ul>	
 						</li>
 
+						{{-- color module --}}
+						<li> 
+							<a class="dropmenu" href="#"><i class="icon-folder-close-alt"></i><span class="hidden-tablet">Color</span><span class="label label-important"></span></a>
+							<ul>
+								<li><a class="submenu" href="{{url('/color/create')}} "><i class="icon-file-alt"></i><span class="hidden-tablet"> Add  Color</span></a></li>
+								<li><a class="submenu" href="/color/"><i class="icon-file-alt"></i><span class="hidden-tablet"> All Color</span></a></li>
+							
+							</ul>	
+						</li>
+
+					
+
 						<li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
 						
-						<li><a href="gallery.html"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
-						<li><a href="table.html"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
-						<li><a href="calendar.html"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
-						<li><a href="file-manager.html"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
+						<li><a href="#"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
+						<li><a href="#"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
+						<li><a href="#"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
+						<li><a href="#"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
 					
 					</ul>
 				</div>
@@ -470,6 +479,7 @@
 		<script src="{{asset('admin/js/modernizr.js')}}"></script>
 	
 		<script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('admin/js/bootstrap-tagsinput.min.js')}}"></script>
 	
 		<script src="{{asset('admin/js/jquery.cookie.js')}}"></script>
 	
@@ -512,6 +522,8 @@
 		<script src="{{asset('admin/js/counter.js')}}"></script>
 	
 		<script src="{{asset('admin/js/retina.js')}}"></script>
+		{{-- <script src="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script> --}}
+		
 
 		<script src="{{asset('admin/js/custom.js')}}"></script>
 		<script>

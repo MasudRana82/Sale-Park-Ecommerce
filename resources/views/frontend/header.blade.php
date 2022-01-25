@@ -8,7 +8,7 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> Baby super,Chattogram</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> BDT</a></li>
+						<li><a href="#"><i class="fa fa-bdt"></i> &#2547 BDT</a></li>
 						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
 					</ul>
 				</div>
@@ -24,7 +24,7 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="{{url('/')}} " class="logo">
 									<img src="./img/logo.png" height="50px" height="70px" alt="SalePark">
 								</a>
 							</div>
@@ -37,8 +37,12 @@
 								<form>
 									<select class="input-select">
 										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
+
+										@foreach ($categories as $category)
+										<option value="1"> {{$category->name}}</option>	
+										
+										@endforeach
+										
 									</select>
 									<input class="input" placeholder="Search here">
 									<button class="search-btn">Search</button>
@@ -54,7 +58,7 @@
 								<div>
 									<a href="#">
 										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
+										<span>Wishlist</span>
 										<div class="qty">2</div>
 									</a>
 								</div>
@@ -64,7 +68,7 @@
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										<span>Cart</span>
 										<div class="qty">3</div>
 									</a>
 									<div class="cart-dropdown">

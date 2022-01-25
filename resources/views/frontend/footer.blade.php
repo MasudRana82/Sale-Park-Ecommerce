@@ -22,10 +22,11 @@
 								<h3 class="footer-title">Categories</h3>
 								<ul class="footer-links">
 									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+
+									@foreach ($categories as $category)
+								<li><a href="#">{{$category->name}}</a></li>
+								@endforeach
+								
 								</ul>
 							</div>
 						</div>
@@ -70,14 +71,14 @@
 					<!-- row -->
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<ul class="footer-payments">
+							{{-- <ul class="footer-payments"> //payment option
 								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
 								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-							</ul>
+							</ul> --}}
 							<span class="copyright">
 								
 								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by SalePark
