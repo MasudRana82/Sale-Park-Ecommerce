@@ -71,10 +71,10 @@
 									<img src="{{asset('/image/'.$images)}}" style="height:50px; width:50px;">	
 									@endforeach
 								</td>
-								<td class="center">{{$product->category->name}}</td>
-								<td class="center">{{$product->subcategory->name}}</td>
-								<td class="center">{{$product->brand->name}}</td>
-								<td class="center">{{$product->unit->name}}</td>
+								<td class="center">{{$product->category->name ?? 'None'}}</td>
+								<td class="center">{{$product->subcategory->name ?? 'None'}}</td>
+								<td class="center">{{$product->brand->name ?? 'None'}}</td>
+								<td class="center">{{$product->unit->name ?? 'None'}}</td>
 								{{-- <td class="center">{{$product->size->name}}</td>
 								<td class="center">{{$product->color->name}}</td> --}}
 								

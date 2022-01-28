@@ -14,6 +14,8 @@ Use App\Http\Controllers\ProductController;
 
 //frontend routes here
 Route::get('/',[HomeController::class,'index']);
+Route::get('/view-product{id}',[HomeController::class,'view_details']);
+Route::get('/product_by_cat{id}',[HomeController::class,'product_by_cat']);
 
 //backned routes here
 Route::get('/admins',[AdminController::class,'index']);

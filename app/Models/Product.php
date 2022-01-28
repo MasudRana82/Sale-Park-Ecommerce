@@ -34,8 +34,22 @@ class Product extends Model
     public function size()
     {
         return $this->belongsTo(Size::class,'size_id');
-    } 
-  
-     
+    }
+    public static function catProductCount($cat_id)
+    {
+        $CatCount=Product::where('cat_id',$cat_id)->where('status',1)->count();
+        return $CatCount;
+    }   
+    public static function subcatProductCount($subcat_id)
+    {
+        $subCatCount=Product::where('subcat_id',$subcat_id)->where('status',1)->count();
+        return $subCatCount;
+    }   
+    public static function brandProductCount($brand_id)
+    {
+        $brandCount=Product::where('br_id',$brand_id)->where('status',1)->count();
+        return $brandCount;
+
+    }   
 
 }
