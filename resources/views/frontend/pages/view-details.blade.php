@@ -103,17 +103,22 @@
 								</label>
 							</div>
 
-							<div class="add-to-cart">
-								<div class="qty-label">
-									Qty
-									<div class="input-number">
-										<input type="number">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
-									</div>
-								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
+							<form action="{{url('/add-to-cart')}}" method="post">
+												@csrf
+											<div class="add-to-cart">
+												{{-- <div class="qty-label">
+															Qty
+															<div class="input-number">
+																<input type="number">
+																<span class="qty-up">+</span>
+																<span class="qty-down">-</span>
+															</div>
+														</div> --}}
+												<input type="hidden" name="quantity" value="1">
+												<input type="hidden" name="id" value="{{$products->id}}">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+											</div>
+										</form>
 
 							<ul class="product-btns">
 								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
@@ -121,9 +126,9 @@
 							</ul>
 
 							<ul class="product-links">
-								<li>{{$products->category->name}}:</li>
-								<li><a href="#">{{$products->subcategory->name}}</a></li>
-								<li><a href="#">{{$products->name}}</a></li>
+								<li>{{$products->category->name}} </li>
+								<li><a href="#">{{$products->subcategory->name}} </a></li>
+								<li><a href="#">{{$products->brand->name}}</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -391,13 +396,18 @@
 												</div>
 												<div class="product-btns">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													{{-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> --}}
 													<a href="{{url('/view-product'.$product->id)}}"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view </a></span></button>
 												</div>
 											</div>
+											<form action="{{url('/add-to-cart')}}" method="post">
+												@csrf
 											<div class="add-to-cart">
+												<input type="hidden" name="quantity" value="1">
+												<input type="hidden" name="id" value="{{$product->id}}">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
+										</form>
 										</div>
 										</div>
 										<!-- /product -->

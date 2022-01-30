@@ -11,11 +11,22 @@ Use App\Http\Controllers\UnitController;
 Use App\Http\Controllers\SizeController;
 Use App\Http\Controllers\ColorController;
 Use App\Http\Controllers\ProductController;
+Use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+
+//add to cart Route
+Route::post('/add-to-cart', [CartController::class, 'add_to_cart']);
+Route::get('/delete{id}', [CartController::class, 'delete']);
+
+//checkout routes
+Route::get('/checkout', [CheckoutController::class, 'checkout']);
 
 //frontend routes here
 Route::get('/',[HomeController::class,'index']);
 Route::get('/view-product{id}',[HomeController::class,'view_details']);
 Route::get('/product_by_cat{id}',[HomeController::class,'product_by_cat']);
+Route::get('/product_by_subcat{id}',[HomeController::class,'product_by_subcat']);
+Route::get('/product_by_brand{id}',[HomeController::class,'product_by_brand']);
 
 //backned routes here
 Route::get('/admins',[AdminController::class,'index']);

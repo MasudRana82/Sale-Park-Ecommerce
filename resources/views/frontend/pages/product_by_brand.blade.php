@@ -13,8 +13,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
 							<li><a href="#">All Categories</a></li>
-							<li><a href="#">cat</a></li>
 							<li><a href="#">Accessories</a></li>
 							<li class="active">Headphones (227,490 Results)</li>
 						</ul>
@@ -36,20 +36,19 @@
 					<div id="aside" class="col-md-3">
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Sub-Categories</h3>
+							<h3 class="aside-title">Categories</h3>
 							<div class="checkbox-filter">
-                                @foreach ($subcategories as $sub)
+                                @foreach ($categories as $cat)
                                 @php
-									$subcatcount=Product::subcatProductCount($sub->id);
+									$catcount=Product::catProductCount($cat->id);
 								@endphp
                               
 								<div class="input-checkbox">
 									<input type="checkbox" id="category-1">
 									<label for="category-1">
 										<span></span>
-										<a href="{{url('/product_by_subcat'.$sub->id)}}"> {{$sub->name}} </a>
-										<small>({{$subcatcount}})</small>
-										
+										<a href="{{url('/product_by_cat'.$cat->id)}}"> {{$cat->name}} </a>
+										<small>({{$catcount}})</small>
 									</label>
 								</div>
                             @endforeach
@@ -80,21 +79,22 @@
 
 						<!-- aside Widget -->
 						<div class="aside">
-							<h3 class="aside-title">Brand</h3>
+							<h3 class="aside-title">Sub-Categories</h3>
 							<div class="checkbox-filter">
-                                @foreach ($brands as $brand)
-                                 @php
-									$brandcount=Product::brandProductCount($brand->id);
+                                @foreach ($subcategories as $sub)
+                                @php
+									$subcatcount=Product::subcatProductCount($sub->id);
 								@endphp
+                              
 								<div class="input-checkbox">
-									<input type="checkbox" id="brand-1">
-									<label for="brand-1">
+									<input type="checkbox" id="category-1">
+									<label for="category-1">
 										<span></span>
-										<a href="{{url('/product_by_brand'.$brand->id)}}"> {{$brand->name}} </a>
-										<small>({{$brandcount}})</small>
+										<a href="{{url('/product_by_subcat'.$sub->id)}}">{{$sub->name}} </a>
+										<small>({{$subcatcount}})</small>
 									</label>
 								</div>
-								@endforeach
+                            @endforeach
 								
 							</div>
 						</div>
