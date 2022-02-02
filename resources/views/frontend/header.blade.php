@@ -3,13 +3,27 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +8801798249882</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +88017XXXXXXXX</a></li>
 						<li><a href="#"><i class="fa fa-envelope-o"></i> salepark@gmail.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> Baby super,Chattogram</a></li>
 					</ul>
 					<ul class="header-links pull-right">
 						<li><a href="#"><i class="fa fa-bdt"></i> &#2547 BDT</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						@php
+							$customer_id= Session::get('id');
+							$customer_name= Session::get('name');
+						@endphp
+
+						@if ($customer_id!=NULL)
+						<li><a href="{{url('#')}}"><i class="fa fa-user-o"></i>{{ $customer_name}}</a></li>
+						<li><a href="{{url('/customer-logout')}}">Logout <i class="fa fa-sign-out"></i></a></li>
+						
+
+						@else
+
+						<li><a href="{{url('/login')}}"><i class="fa fa-sign-in"></i>Login</a></li>	
+						@endif
+						
 					</ul>
 				</div>
 			</div>
@@ -81,7 +95,7 @@
 											@foreach ($cart_array as $cart)
 
 											<?php
-
+											//image separation
 											$images = $cart['attributes'][0];
 											$images = explode('|',$images);
 											$images = $images[0];
@@ -107,8 +121,23 @@
 											<h5>SUBTOTAL: &#2547 {{Cart::getTotal()}} </h5>
 										</div>
 										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="{{url('/checkout')}}">Checkout<i class="fa fa-arrow-circle-right"></i></a>
+											{{-- <a href="{{url('/view-cart')}}">View Cart</a> --}}
+
+											@php
+											$customer_id= Session::get('id');
+											@endphp
+
+											@if ($customer_id!=NULL)
+											<a style="width: 100%; background-color: #D10024;" href="{{url('/checkout')}}" >Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+
+											@else
+
+											<a style="width: 100%; background-color: #D10024;" href="{{url('/login')}}">Checkout    <i class="fa fa-arrow-circle-right"></i></a>
+											@endif
+											
+
+
+											
 										</div>
 									</div>
 								</div>

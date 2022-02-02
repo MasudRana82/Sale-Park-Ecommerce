@@ -13,13 +13,41 @@ Use App\Http\Controllers\ColorController;
 Use App\Http\Controllers\ProductController;
 Use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShippingController;
+use App\Http\Controllers\SslCommerzPaymentController;
 
 //add to cart Route
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart']);
 Route::get('/delete{id}', [CartController::class, 'delete']);
 
+// SSLCOMMERZ Start
+Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+//SSLCOMMERZ END
+
+
 //checkout routes
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
+Route::post('/shipping-address', [ShippingController::class, 'shipping_address']);
+Route::get('/order-details', [ShippingController::class, 'order_details']);
+Route::post('/payment', [ShippingController::class, 'payment_method']);
+
+
+// customers Login routes
+Route::get('/login', [CustomerController::class, 'login']);
+Route::post('/signup', [CustomerController::class, 'signup']);
+Route::get('/login-check', [CustomerController::class, 'login_check']);
+Route::get('/customer-logout', [CustomerController::class, 'customer_logout']);
 
 //frontend routes here
 Route::get('/',[HomeController::class,'index']);

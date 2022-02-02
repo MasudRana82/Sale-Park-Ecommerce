@@ -17,6 +17,9 @@
 		<!-- Slick -->
 		<link type="text/css" rel="stylesheet" href="{{asset('css/slick.css')}}"/>
 		<link type="text/css" rel="stylesheet" href="{{asset('css/slick-theme.css')}}"/>
+		
+		<link rel="icon"  type="image/x-icon" href="./img/favicon.png">
+
 
 		<!-- nouislider -->
 		<link type="text/css" rel="stylesheet" href="{{asset('css/nouislider.min.css')}}"/>
