@@ -201,27 +201,27 @@
 								<div id="tab2" class="tab-pane fade in active">
 									<div class="products-slick" data-nav="#slick-nav-2">
 										<!-- product -->
-											@foreach ($products as $product)
-
-											{{-- Multiple image Sepatation --}}
-											{{-- @php
-											$product['image'] = explode('|',$product->image);
-											$images = $product->image[0];
-											@endphp --}}
+										@foreach ($top_products as $top_product)
+	
+										
+											@php
+											$top_product['image'] = explode('|',$top_product->image);
+											$images = $top_product->image[0];
+											@endphp
 
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="{{asset('/image/'.$images)}}" style="width: 256px; height:230px ">
+												<img src="{{asset('/image/'.$images)}}" style="height:230px">
 												<div class="product-label">
 													<span class="sale">-30%</span>
 													<span class="new">new</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">{{$product->category->name?? 'None'}}</p>
-												<h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
-												<h4 class="product-price">&#2547 {{$product->price}} <del class="product-old-price">&#2547 {{$product->price}}</del></h4>
+												<p class="product-category">{{$top_product->category->name?? 'None'}}</p>
+												<h3 class="product-name"><a href="#">{{$top_product->name  }}</a></h3>
+												<h4 class="product-price">&#2547 {{$top_product->price}} <del class="product-old-price">&#2547 {{$top_product->price}}</del></h4>
 												<div class="product-rating">
 												</div>
 												<div class="product-btns">

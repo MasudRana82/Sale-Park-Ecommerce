@@ -3,7 +3,7 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +88017XXXXXXXX</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +8801732324234</a></li>
 						<li><a href="#"><i class="fa fa-envelope-o"></i> salepark@gmail.com</a></li>
 						<li><a href="#"><i class="fa fa-map-marker"></i> Baby super,Chattogram</a></li>
 					</ul>
@@ -48,17 +48,17 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
+								<form action="{{url('/search')}}" method="GET" >
+									<select class="input-select" name="category">
+										<option value="ALL" {{request('category') == 'ALL' ? 'selected' : '' }} >All Categories</option>
 
 										@foreach ($categories as $category)
-										<option value="1"> {{$category->name}}</option>	
+										<option value="{{$category->id}}" {{request('category') == $category->id ? 'selected' : ''}} > {{$category->name}}</option>	
 										
 										@endforeach
 										
 									</select>
-									<input class="input" placeholder="Search here">
+									<input class="input" placeholder="Search here" name="product" value="{{request('product')}} ">
 									<button class="search-btn">Search</button>
 								</form>
 							</div>

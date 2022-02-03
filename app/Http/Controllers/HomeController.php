@@ -9,6 +9,7 @@ use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\Unit;
+use DB;
 
 class HomeController extends Controller
 {
@@ -21,7 +22,23 @@ class HomeController extends Controller
         $sizes=Size::all();
         $units=Unit::all();
         $products=Product::where('status',1)->latest()->limit(12)->get();
-        return view('frontend.welcome',compact('categories','subcategories','colors','sizes','brands','units','products'));
+
+        //top selling products
+        $top_sales =DB::table('products')
+                    ->leftJoin('order_details','products.id','=','order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
+                    ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total')
+                    ->groupBy('products.id')
+                    ->orderBy('total','desc')
+                    ->take(8)
+                    ->get();
+            $top_products=[];
+            foreach ($top_sales as $s) {
+               $p = Product::findOrFail($s->id);
+               $p->totalQty= $s->total;
+                $top_products[] =$p;
+            }
+
+        return view('frontend.welcome',compact('categories','subcategories','colors','sizes','brands','units','products', 'top_products'));
     }
     public function view_details($id)
     { 
@@ -64,6 +81,21 @@ class HomeController extends Controller
         $brands = Brand::all();
         $products = Product::where('br_id',$id)->where('status',1)->limit(12)->get();
         return view('frontend.pages.product_by_brand', compact('categories', 'subcategories', 'brands', 'products' ));
+
+    }
+
+    public function search(Request $req)
+    {
+        $products = Product::orderBy('id','desc')->where('name','LIKE','%'.$req->product.'%'); // LIKE used in a Search Technic. //ei condition e all data cole asce
+        if($req->category!="ALL") $products->where('cat_id',$req->category); // ei condition e  categorir sathe mil rekhe product dekhano hoyece
+
+        $products = $products->get(); //get all data with previous condition
+
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        $brands = Brand::all();
+        
+        return view('frontend.pages.product_by_cat', compact('categories', 'subcategories', 'brands', 'products'));
 
     }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="SSLCommerz">
-    <title>Example - EasyCheckout (Popup) | SSLCommerz</title>
+    <title>EasyCheckout (Popup) | SSLCommerz</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -31,7 +31,7 @@
 <body class="bg-light">
 <div class="container">
     <div class="py-5 text-center">
-        <h2>EasyCheckout- SSLCommerz</h2>
+    
 
      
 
@@ -42,7 +42,7 @@
                         token="if you have any token validation"
                         postdata="your javascript arrays or objects which requires in backend"
                         order="If you already have the transaction generated for current order"
-                        endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
+                        endpoint="{{ url('/pay-via-ajax') }}"> Payment
                 </button>
             </form>
         </div>

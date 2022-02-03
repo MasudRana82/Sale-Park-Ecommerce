@@ -55,6 +55,7 @@ Route::get('/view-product{id}',[HomeController::class,'view_details']);
 Route::get('/product_by_cat{id}',[HomeController::class,'product_by_cat']);
 Route::get('/product_by_subcat{id}',[HomeController::class,'product_by_subcat']);
 Route::get('/product_by_brand{id}',[HomeController::class,'product_by_brand']);
+Route::get('/search',[HomeController::class,'search']);
 
 //backned routes here
 Route::get('/admins',[AdminController::class,'index']);
