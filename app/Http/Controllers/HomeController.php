@@ -26,14 +26,14 @@ class HomeController extends Controller
         //top selling products
         $top_sales =DB::table('products')
                     ->leftJoin('order_details','products.id','=','order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
-                    ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total')
-                    ->groupBy('products.id')
+                    ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total') //specipic product_id jotobar sell hoice ta count korbe
+                    ->groupBy('products.id') 
                     ->orderBy('total','desc')
-                    ->take(8)
+                    ->take(8) // take 8 data
                     ->get();
-            $top_products=[];
+            $top_products=[]; //array nici
             foreach ($top_sales as $s) {
-               $p = Product::findOrFail($s->id);
+               $p = Product::findOrFail($s->id); //find top product
                $p->totalQty= $s->total;
                 $top_products[] =$p;
             }
@@ -61,8 +61,22 @@ class HomeController extends Controller
         $subcategories = SubCategory::all();
         $brands = Brand::all();
         $products = Product::where('cat_id',$id)->where('status',1)->limit(12)->get();
+        //top selling products
+        $top_sales = DB::table('products')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
+        ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total') //specipic product_id jotobar sell hoice ta count korbe
+        ->groupBy('products.id')
+        ->orderBy('total', 'desc')
+        ->take(3) // take 8 data
+            ->get();
+        $top_products = []; //array nici
+        foreach ($top_sales as $s) {
+            $p = Product::findOrFail($s->id); //find top product
+            $p->totalQty = $s->total;
+            $top_products[] = $p;
+        }
        
-        return view('frontend.pages.product_by_cat', compact('categories', 'subcategories', 'brands', 'products'));
+        return view('frontend.pages.product_by_cat', compact('categories', 'subcategories', 'brands', 'products', 'top_products'));
 
     }
     public function product_by_subcat($id)
@@ -71,7 +85,21 @@ class HomeController extends Controller
         $subcategories = SubCategory::all();
         $brands = Brand::all();
         $products = Product::where('subcat_id',$id)->where('status',1)->limit(12)->get();
-        return view('frontend.pages.product_by_subcat', compact('categories', 'subcategories', 'brands', 'products' ));
+        //top selling products
+        $top_sales = DB::table('products')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
+        ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total') //specipic product_id jotobar sell hoice ta count korbe
+        ->groupBy('products.id')
+        ->orderBy('total', 'desc')
+        ->take(3) // take 8 data
+            ->get();
+        $top_products = []; //array nici
+        foreach ($top_sales as $s) {
+            $p = Product::findOrFail($s->id); //find top product
+            $p->totalQty = $s->total;
+            $top_products[] = $p;
+        }
+        return view('frontend.pages.product_by_subcat', compact('categories', 'subcategories', 'brands', 'products', 'top_products' ));
 
     }
     public function product_by_brand($id)
@@ -80,7 +108,21 @@ class HomeController extends Controller
         $subcategories = SubCategory::all();
         $brands = Brand::all();
         $products = Product::where('br_id',$id)->where('status',1)->limit(12)->get();
-        return view('frontend.pages.product_by_brand', compact('categories', 'subcategories', 'brands', 'products' ));
+        //top selling products
+        $top_sales = DB::table('products')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
+        ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total') //specipic product_id jotobar sell hoice ta count korbe
+        ->groupBy('products.id')
+        ->orderBy('total', 'desc')
+        ->take(3) // take 8 data
+            ->get();
+        $top_products = []; //array nici
+        foreach ($top_sales as $s) {
+            $p = Product::findOrFail($s->id); //find top product
+            $p->totalQty = $s->total;
+            $top_products[] = $p;
+        }
+        return view('frontend.pages.product_by_brand', compact('categories', 'subcategories', 'brands', 'products', 'top_products' ));
 
     }
 

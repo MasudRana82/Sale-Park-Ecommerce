@@ -103,17 +103,25 @@
 						<!-- aside Widget -->
 						<div class="aside">
 							<h3 class="aside-title">Top selling</h3>
+							@foreach ($top_products as $top_product)
+							@php
+									$top_product['image']= explode('|',	$top_product->image);
+									$images = $top_product->image[0];
+							@endphp
+							
 							<div class="product-widget">
+								<a href="{{url('/view-product'.$top_product->id)}}">
 								<div class="product-img">
-									<img src="./img/product01.png" alt="">
+									<img src="{{asset('/image/'.$images)}} " alt="">
 								</div>
 								<div class="product-body">
-									<p class="product-category">Category</p>
-									<h3 class="product-name"><a href="#">product name goes here</a></h3>
-									<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									<p class="product-category">{{$top_product->category->name}}</p>
+									<h3 class="product-name">{{$top_product->name}}</h3>
+									<h4 class="product-price">{{$top_product->price}}<del class="product-old-price">{{$top_product->price+100}}</del></h4>
 								</div>
+								</a>
 							</div>
-
+							@endforeach
 						
 						</div>
 						<!-- /aside Widget -->
@@ -180,9 +188,14 @@
 													<a href="{{url('/view-product'.$product->id)}}"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view </a></span></button>
 												</div>
 											</div>
+											<form action="{{url('/add-to-cart')}}" method="post">
+												@csrf
 											<div class="add-to-cart">
+												<input type="hidden" name="quantity" value="1">
+												<input type="hidden" name="id" value="{{$product->id}}">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
+										</form>
 										</div>
 							</div>
 							<!-- /product -->
