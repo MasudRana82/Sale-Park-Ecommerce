@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Cart;
 use Illuminate\Http\Request;
@@ -19,9 +20,10 @@ class CartController extends Controller
         $data['price'] = $products->price;
         $data['attributes'] = [$products->image];
 
-        Cart::add($data);
+        Cart::add($data); //session er modde data rakhlam
 
         cardArray();
+
         return redirect()->back();
 
     }
@@ -29,5 +31,10 @@ class CartController extends Controller
     {
         Cart::remove($id);
         return redirect()->back();
+    }
+    public function wishlist()
+    {
+        $categories = Category::all();
+        return view('frontend.pages.wishlist',compact('categories'));
     }
 }

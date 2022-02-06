@@ -14,12 +14,27 @@ Use App\Http\Controllers\ProductController;
 Use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SslCommerzPaymentController;
+
+//frontend routes here
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/view-product{id}', [HomeController::class, 'view_details']);
+Route::get('/product_by_cat{id}', [HomeController::class, 'product_by_cat']);
+Route::get('/product_by_subcat{id}', [HomeController::class, 'product_by_subcat']);
+Route::get('/product_by_brand{id}', [HomeController::class, 'product_by_brand']);
+Route::get('/search', [HomeController::class, 'search']);
 
 //add to cart Route
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart']);
 Route::get('/delete{id}', [CartController::class, 'delete']);
+Route::get('/wishlist', [CartController::class, 'wishlist']);
+
+//order_related routes..
+Route::get('/manage-orders', [OrderController::class, 'manage_orders']);
+Route::get('/order-view/{id}', [OrderController::class, 'order_view']);
+Route::get('/invoice/{id}', [OrderController::class, 'invoice']);
 
 // SSLCOMMERZ Start
 Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
@@ -49,19 +64,16 @@ Route::post('/signup', [CustomerController::class, 'signup']);
 Route::get('/login-check', [CustomerController::class, 'login_check']);
 Route::get('/customer-logout', [CustomerController::class, 'customer_logout']);
 
-//frontend routes here
-Route::get('/',[HomeController::class,'index']);
-Route::get('/view-product{id}',[HomeController::class,'view_details']);
-Route::get('/product_by_cat{id}',[HomeController::class,'product_by_cat']);
-Route::get('/product_by_subcat{id}',[HomeController::class,'product_by_subcat']);
-Route::get('/product_by_brand{id}',[HomeController::class,'product_by_brand']);
-Route::get('/search',[HomeController::class,'search']);
+
 
 //backned routes here
 Route::get('/admins',[AdminController::class,'index']);
 Route::post('/admin-dashboard',[AdminController::class,'show_dashboard']);
 Route::get('/dashboard',[SuperAdminController::class,'dashboard']);
 Route::get('/logout',[SuperAdminController::class,'logout']);
+
+
+
 
 //Product route here
 Route::resource('/product/',ProductController::class); //resource route

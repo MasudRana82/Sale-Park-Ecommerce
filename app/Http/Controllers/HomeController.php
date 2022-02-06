@@ -115,7 +115,7 @@ class HomeController extends Controller
         ->groupBy('products.id')
         ->orderBy('total', 'desc')
         ->take(3) // take 8 data
-            ->get();
+        ->get();
         $top_products = []; //array nici
         foreach ($top_sales as $s) {
             $p = Product::findOrFail($s->id); //find top product
@@ -136,8 +136,22 @@ class HomeController extends Controller
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
+        //top selling products
+        $top_sales = DB::table('products')
+        ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice
+        ->selectRaw('products.id, SUM(order_details.product_sales_quantity) as total') //specipic product_id jotobar sell hoice ta count korbe
+        ->groupBy('products.id')
+        ->orderBy('total', 'desc')
+        ->take(3) // take 8 data
+            ->get();
+        $top_products = []; //array nici
+        foreach ($top_sales as $s) {
+            $p = Product::findOrFail($s->id); //find top product
+            $p->totalQty = $s->total; 
+            $top_products[] = $p;
+        }
         
-        return view('frontend.pages.product_by_cat', compact('categories', 'subcategories', 'brands', 'products'));
+        return view('frontend.pages.product_by_cat', compact('categories', 'subcategories', 'brands', 'products', 'top_products'));
 
     }
 }

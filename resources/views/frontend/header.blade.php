@@ -70,7 +70,7 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
+									<a href="{{url('/wishlist')}} ">
 										<i class="fa fa-heart-o"></i>
 										<span>Wishlist</span>
 										<div class="qty">0</div>

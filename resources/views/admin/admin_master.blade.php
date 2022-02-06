@@ -15,6 +15,7 @@
 	<!-- end: Mobile Specific -->
 	
 	<!-- start: CSS -->
+	
 	<link id="bootstrap-style" href="{{asset('admin/css/bootstrap.min.css')}}" rel="stylesheet">
 	<link href="{{asset('admin/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
 	<link id="base-style" href="{{asset('admin/css/style.css')}}" rel="stylesheet">
@@ -403,10 +404,7 @@
 
 					
 
-						<li><a href="form.html"><i class="icon-edit"></i><span class="hidden-tablet"> Forms</span></a></li>
-						
-						<li><a href="#"><i class="icon-picture"></i><span class="hidden-tablet"> Gallery</span></a></li>
-						<li><a href="#"><i class="icon-align-justify"></i><span class="hidden-tablet"> Tables</span></a></li>
+						<li><a href="{{url('/manage-orders')}} "><i class="icon-edit"></i><span class="hidden-tablet"> Orders</span></a></li>
 						<li><a href="#"><i class="icon-calendar"></i><span class="hidden-tablet"> Calendar</span></a></li>
 						<li><a href="#"><i class="icon-folder-open"></i><span class="hidden-tablet"> File Manager</span></a></li>
 					

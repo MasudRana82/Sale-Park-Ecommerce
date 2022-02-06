@@ -37,6 +37,7 @@
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+
     </head>
 	<body>
 		<!-- HEADER -->
@@ -100,6 +101,9 @@
 		<script src="{{asset('js/nouislider.min.js')}}"></script>
 		<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('js/main.js')}}"></script>
+		
+		
+
 
 	</body>
 </html>

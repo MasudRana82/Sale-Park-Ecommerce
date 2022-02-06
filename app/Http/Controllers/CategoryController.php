@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Support\Facades\Redirect;
+use Session;
 
 class CategoryController extends Controller
 {
@@ -14,8 +16,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+      
         $categories =Category::all();
-      return view('admin.category.index',compact('categories'));
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
