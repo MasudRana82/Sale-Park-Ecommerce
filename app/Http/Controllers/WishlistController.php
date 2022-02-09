@@ -19,11 +19,21 @@ class WishlistController extends Controller
     }
     public function add_wishlist(Request $req)
     {
+        $customer_id = Session::get('id');
+        if ($customer_id) {
+
         $wdata = new Wishlist();
         $wdata->user_id=Session::get('id');
         $wdata->product_id = $req->id;
         $wdata->save();
+        notify()->success('Product successfully in wishlist!');
         return redirect()->back();
+        } 
+        else {
+            notify()->error('Please login in your account!');
+            return redirect('/login');
+        }
+       
 
 
     }

@@ -64,7 +64,7 @@ var {
 </tr>
 </thead>
 <tbody>
-	@foreach ($wdata as $product)
+	@forelse ($wdata as $product)
 		
 		@php
 			$product['image'] = explode('|',$product->Product->image);
@@ -107,7 +107,9 @@ var {
 								
 	</td>
 </tr>
-@endforeach
+@empty
+    <h3>No Product</h3>
+@endforelse
 <tr>
 
 </tbody>

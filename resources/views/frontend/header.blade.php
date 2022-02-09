@@ -1,5 +1,6 @@
 
 			<!-- TOP HEADER -->
+		
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
@@ -66,7 +67,7 @@
 						<!-- /SEARCH BAR -->
 								@php
 									$cart_array = cardArray();
-									$wish = App\Models\Wishlist::all();
+									$wish = App\Models\Wishlist::where('user_id',Session::get('id'))->get();
 								@endphp
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">

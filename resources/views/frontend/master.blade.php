@@ -7,6 +7,7 @@
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<title>SalePark</title>
+		 @notifyCss
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -40,6 +41,7 @@
 
     </head>
 	<body>
+		
 		<!-- HEADER -->
 		<header>
 		@include('frontend.header')
@@ -101,8 +103,9 @@
 		<script src="{{asset('js/nouislider.min.js')}}"></script>
 		<script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('js/main.js')}}"></script>
+		@notifyJs
 		
-		
+		<x:notify-messages />
 
 
 	</body>

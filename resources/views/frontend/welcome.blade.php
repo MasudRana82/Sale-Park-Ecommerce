@@ -1,7 +1,11 @@
 @extends('frontend.master')
 @section('content')
 <!-- SECTION -->
+{{-- using notify package --}}
+	  <x:notify-messages /> 
 <div class="section">
+
+	
 	
 			<!-- container -->
 			<div class="container">

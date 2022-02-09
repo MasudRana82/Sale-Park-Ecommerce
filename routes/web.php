@@ -13,11 +13,13 @@ Use App\Http\Controllers\ColorController;
 Use App\Http\Controllers\ProductController;
 Use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\WishlistController;
+
 
 //frontend routes here
 Route::get('/', [HomeController::class, 'index']);
@@ -35,6 +37,9 @@ Route::get('/delete{id}', [CartController::class, 'delete']);
 Route::post('/add-wishlist', [WishlistController::class, 'add_wishlist']);
 Route::post('/wishlist-delete/{id}', [WishlistController::class, 'delete']);
 Route::get('/wishlist', [WishlistController::class, 'wishlist']);
+
+//comments routes
+Route::post('/commnent-add',[CommentController::class, 'add_commnent']);
 
 //order_related routes..
 Route::get('/manage-orders', [OrderController::class, 'manage_orders']);

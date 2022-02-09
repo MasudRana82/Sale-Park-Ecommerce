@@ -7,6 +7,7 @@ use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Color;
+use App\Models\Comment;
 use App\Models\Size;
 use App\Models\Unit;
 use DB;
@@ -15,6 +16,10 @@ class HomeController extends Controller
 {
     public function index()
     {
+        //  notify()->success('Welcome to SALE Park ✌️') ;
+        // drakify('sucess');
+        //  emotify('success', 'You are awesome, your data was successfully created');
+        // notify()->preset('user-updated');
         $categories=Category::all();
         $subcategories=SubCategory::all();
         $brands=Brand::all();
@@ -51,8 +56,9 @@ class HomeController extends Controller
         $units = Unit::all();
         $cat_id=$products->cat_id;
         $related_product=Product::where('cat_id',$cat_id)->limit(4)->get();
+        $comments =Comment::where('product_id',$id)->get();
        
-        return view('frontend.pages.view-details', compact('categories', 'subcategories', 'colors', 'sizes', 'brands', 'units', 'products', 'related_product'));
+        return view('frontend.pages.view-details', compact('categories', 'subcategories', 'colors', 'sizes', 'brands', 'units', 'products', 'related_product', 'comments'));
     }
     
     public function product_by_cat($id)
@@ -128,6 +134,7 @@ class HomeController extends Controller
 
     public function search(Request $req)
     {
+        
         $products = Product::orderBy('id','desc')->where('name','LIKE','%'.$req->product.'%'); // LIKE used in a Search Technic. //ei condition e all data cole asce
         if($req->category!="ALL") $products->where('cat_id',$req->category); // ei condition e  categorir sathe mil rekhe product dekhano hoyece
 

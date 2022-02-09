@@ -3,9 +3,10 @@
 	{{-- Multiple image Sepatation --}}
 			@php
 			$products['image'] = explode('|',$products->image);
+			
 			@endphp
 
-{{-- <!-- BREADCRUMB -->
+<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
 			<div class="container">
@@ -13,11 +14,11 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">subcategories</a></li>
+							<li><a href="{{url('/')}} ">Home</a></li>
+							<li><a href="#">{{$products->Category->name}}</a></li>
+							<li><a href="#">{{$products->Subcategory->name}}</a></li>
 							
-							<li class="active">Product name </li>
+							<li class="active">{{$products->name}} </li>
 						</ul>
 					</div>
 				</div>
@@ -25,7 +26,7 @@
 			</div>
 			<!-- /container -->
 		</div>
-		<!-- /BREADCRUMB --> --}}
+		<!-- /BREADCRUMB -->
 
 		<!-- SECTION -->
 		<div class="section">
@@ -75,7 +76,7 @@
 									<i class="fa fa-star"></i>
 									<i class="fa fa-star-o"></i>
 								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
+								<a class="review-link" href="#tab3"><?=count($comments)?> Review(s) | Add your review</a>
 							</div>
 							<div>
 								<h3 class="product-price">&#2547 {{$products->price}} <del class="product-old-price">&#2547 {{$products->price+100}}</del></h3>
@@ -121,8 +122,13 @@
 										</form>
 
 							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-								{{-- <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li> --}}
+							<form action="{{url('/add-wishlist')}} " method="post"> 
+														@csrf
+												<div class="product-btns">
+													
+														<input type="hidden" name="id" value="{{$products->id}}">
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+												</form>
 							</ul>
 
 							<ul class="product-links">
@@ -150,7 +156,7 @@
 							<ul class="tab-nav">
 								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
 								
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li><a data-toggle="tab" href="#tab3">Reviews (<?=count($comments)?>)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -175,7 +181,7 @@
 										<div class="col-md-3">
 											<div id="rating">
 												<div class="rating-avg">
-													<span>4.5</span>
+													<span>5.0</span>
 													<div class="rating-stars">
 														<i class="fa fa-star"></i>
 														<i class="fa fa-star"></i>
@@ -196,7 +202,7 @@
 														<div class="rating-progress">
 															<div style="width: 80%;"></div>
 														</div>
-														<span class="sum">3</span>
+														<span class="sum"><?=count($comments)?></span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -209,7 +215,7 @@
 														<div class="rating-progress">
 															<div style="width: 60%;"></div>
 														</div>
-														<span class="sum">2</span>
+														<span class="sum">0</span>
 													</li>
 													<li>
 														<div class="rating-stars">
@@ -259,62 +265,33 @@
 										<div class="col-md-6">
 											<div id="reviews">
 												<ul class="reviews">
+													@foreach ($comments as $comment)
+														
+													
 													<li>
 														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
+															<h5 class="name">{{$comment->Customer->name}}</h5>
+															<p class="date">{{Carbon\Carbon::parse($comment->created_at)->format('M d,Y,h:iA')}}</p>
 															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
+
+																@for ($i = 1; $i <= $comment->rating; $i++)
+																	<i class="fa fa-star"></i>
+
+																@endfor
+																
+																@for ($j = $i; $j <= 5; $j++)
+																	
 																<i class="fa fa-star-o empty"></i>
+																@endfor
+																
 															</div>
 														</div>
 														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+															<p>{{$comment->comment}}</p>
 														</div>
 													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-												</ul>
-												<ul class="reviews-pagination">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-												</ul>
+													@endforeach
+													
 											</div>
 										</div>
 										<!-- /Reviews -->
@@ -322,10 +299,12 @@
 										<!-- Review Form -->
 										<div class="col-md-3">
 											<div id="review-form">
-												<form class="review-form">
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
+												<form class="review-form" action="{{url('/commnent-add')}} " method="POST">
+													@csrf
+													{{-- <input class="input" type="text" placeholder="Your Name">
+													<input class="input" type="email" placeholder="Your Email"> --}}
+													<textarea class="input" placeholder="Your Review" name="comment"></textarea>
+												<input type="hidden" name="product" value="{{$products->id}} ">
 													<div class="input-rating">
 														<span>Your Rating: </span>
 														<div class="stars">
