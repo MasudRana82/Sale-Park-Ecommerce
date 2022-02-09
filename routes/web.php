@@ -17,6 +17,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\WishlistController;
 
 //frontend routes here
 Route::get('/', [HomeController::class, 'index']);
@@ -29,7 +30,11 @@ Route::get('/search', [HomeController::class, 'search']);
 //add to cart Route
 Route::post('/add-to-cart', [CartController::class, 'add_to_cart']);
 Route::get('/delete{id}', [CartController::class, 'delete']);
-Route::get('/wishlist', [CartController::class, 'wishlist']);
+
+//wishlist routes
+Route::post('/add-wishlist', [WishlistController::class, 'add_wishlist']);
+Route::post('/wishlist-delete/{id}', [WishlistController::class, 'delete']);
+Route::get('/wishlist', [WishlistController::class, 'wishlist']);
 
 //order_related routes..
 Route::get('/manage-orders', [OrderController::class, 'manage_orders']);

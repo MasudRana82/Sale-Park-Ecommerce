@@ -1,51 +1,10 @@
 @extends('frontend.master')
 @section('content')
+<!-- SECTION -->
 <div class="section">
-	<div id="hot-deal" class="section">
+	
 			<!-- container -->
 			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<div class="col-md-12">
-						<div class="hot-deal">
-							<ul class="hot-deal-countdown">
-								<li>
-									<div>
-										<h3>02</h3>
-										<span>Days</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>10</h3>
-										<span>Hours</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>34</h3>
-										<span>Mins</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>60</h3>
-										<span>Secs</span>
-									</div>
-								</li>
-							</ul>
-							<h2 class="text-uppercase">hot deal this week</h2>
-							<p>New Collection Up to 50% OFF</p>
-							<a class="primary-btn cta-btn" href="#">Shop now</a>
-						</div>
-					</div>
-				</div>
-				<!-- /row -->
-			</div>
-			<!-- /container -->
-		</div>
-			<!-- container -->
-			{{-- <div class="container">
 				<!-- row -->
 				<div class="row">
 					@foreach ($categories as $category)
@@ -66,7 +25,7 @@
 				
 				</div>
 				<!-- /row -->
-			</div> --}}
+			</div>
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
@@ -134,8 +93,14 @@
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
 												</div>
+												
+												<form action="{{url('/add-wishlist')}} " method="post"> 
+														@csrf
 												<div class="product-btns">
+													
+														<input type="hidden" name="id" value="{{$product->id}}">
 													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+												</form>
 													{{-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button> --}}
 													<a href="{{url('/view-product'.$product->id)}}"><button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</a></span></button>
 												</div>
@@ -171,7 +136,49 @@
 
 		<!-- HOT DEAL SECTION -->
 		
-
+<div id="hot-deal" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hot-deal">
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3>02</h3>
+										<span>Days</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>10</h3>
+										<span>Hours</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>34</h3>
+										<span>Mins</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>60</h3>
+										<span>Secs</span>
+									</div>
+								</li>
+							</ul>
+							<h2 class="text-uppercase">hot deal this week</h2>
+							<p>New Collection Up to 50% OFF</p>
+							<a class="primary-btn cta-btn" href="#">Shop now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
 		
 		<!-- /HOT DEAL SECTION -->
 
@@ -275,6 +282,6 @@
 			<!-- /container -->
 		</div>
 		<!-- /SECTION -->
-
-		
 @endsection
+		
+

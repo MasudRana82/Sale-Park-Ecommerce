@@ -32,9 +32,5 @@ class CartController extends Controller
         Cart::remove($id);
         return redirect()->back();
     }
-    public function wishlist()
-    {
-        $categories = Category::all();
-        return view('frontend.pages.wishlist',compact('categories'));
-    }
+   
 }

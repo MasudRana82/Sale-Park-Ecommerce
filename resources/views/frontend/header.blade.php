@@ -64,7 +64,10 @@
 							</div>
 						</div>
 						<!-- /SEARCH BAR -->
-
+								@php
+									$cart_array = cardArray();
+									$wish = App\Models\Wishlist::all();
+								@endphp
 						<!-- ACCOUNT -->
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
@@ -73,14 +76,12 @@
 									<a href="{{url('/wishlist')}} ">
 										<i class="fa fa-heart-o"></i>
 										<span>Wishlist</span>
-										<div class="qty">0</div>
+										<div class="qty"><?=count($wish)?></div>
 									</a>
 								</div>
 								<!-- /Wishlist -->
 
-								@php
-									$cart_array = cardArray();
-								@endphp
+							
 
 								<!-- Cart -->
 								<div class="dropdown">

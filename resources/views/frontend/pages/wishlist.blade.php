@@ -25,7 +25,7 @@
 } 
 
 .shopping-cart-wrap .price {
-    color: #007bff;
+    color: #000000;
     font-size: 18px;
     font-weight: bold;
     margin-right: 5px;
@@ -39,7 +39,7 @@ var {
     margin-right: 1rem;
 }
 .img-sm {
-    width: 90px;
+    width: 110px;
     max-height: 75px;
     object-fit: cover;
 }
@@ -56,50 +56,58 @@ var {
 <table class="table table-hover shopping-cart-wrap">
 <thead class="text-muted">
 <tr>
-  <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" width="200" class="text-right">Action</th>
+  <th scope="col" style="width: 20% ">Product name</th>
+  <th scope="col" style="width: 20% ">Image</th>
+  <th scope="col" style="width: 10% ">Quantity</th>
+  <th scope="col" style="width: 20% ">Price</th>
+  <th scope="col" style="width: 20% " class="text-left">Action</th>
 </tr>
 </thead>
 <tbody>
+	@foreach ($wdata as $product)
+		
+		@php
+			$product['image'] = explode('|',$product->Product->image);
+			$images = $product->image[0];
+		@endphp
 <tr>
+	<td> {{$product->Product->name}}</td>
 	<td>
 <figure class="media">
-	<div class="img-wrap"><img src="" class="img-thumbnail img-sm"></div>
-	<figcaption class="media-body">
-		<h6 class="title text-truncate">Product name  </h6>
-		<dl class="param param-inline small">
-		  <dt>Size: </dt>
-		  <dd>XXL</dd>
-		</dl>
-		<dl class="param param-inline small">
-		  <dt>Color: </dt>
-		  <dd>Orange color</dd>
-		</dl>
-	</figcaption>
-</figure> 
+	<div class="img-wrap"><img src="{{asset('/image/'.$images)}}" class="img-thumbnail img-sm"></div>
+	
+
 	</td>
-	<td> 
-		<select class="form-control">
-			<option>1</option>
-			<option>2</option>	
-			<option>3</option>	
-			<option>4</option>	
-		</select> 
+	<td class="center"> 
+		<input type="number" value="1" >
 	</td>
-	<td> 
+	<td class="center"> 
 		<div class="price-wrap"> 
-			<var class="price">USD 145</var> 
+			<var class="price">&#2547 {{$product->Product->price}}</var> 
 			
 		</div> <!-- price-wrap .// -->
 	</td>
-	<td class="text-right"> 
-	<a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist">cart</i></a> 
-	<a href="" class="btn btn-outline-danger"> Remove</a>
+	<td > 
+	
+	<form action="{{url('/add-to-cart')}}" method="post">
+												@csrf
+											
+												<input type="hidden" name="quantity" value="1">
+												<input type="hidden" name="id" value="{{$product->Product->id}}">
+												<button class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Cart</button>
+											
+										</form>
+		
+	
+									<form method="post" action="{{url('/wishlist-delete/'.$product->id)}}">
+									@csrf
+								 
+								<button class="btn btn-danger" type="submit"> <i class="fa fa-close">Delete</i></button>
+									</form>
+								
 	</td>
 </tr>
-
+@endforeach
 <tr>
 
 </tbody>
