@@ -63,9 +63,8 @@ Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
 //checkout routes
 Route::get('/checkout', [CheckoutController::class, 'checkout']);
-Route::post('/shipping-address', [ShippingController::class, 'shipping_address']);
-Route::get('/order-details', [ShippingController::class, 'order_details']);
-Route::post('/payment', [ShippingController::class, 'payment_method']);
+
+
 
 
 // customers Login routes

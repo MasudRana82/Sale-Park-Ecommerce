@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use DB;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
+use App\Models\Category;
 use Cart;
+use Session;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -95,14 +97,17 @@ class SslCommerzPaymentController extends Controller
         # Lets your oder trnsaction informations are saving in a table called "orders"
         # In orders table order uniq identity is "transaction_id","status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
         
+        
+        $data = (array) json_decode($request->cart_json);
         //data gula json format astece ,tai normal data receive kaj korbe na.json_decode use korte hobe
         #MUST READ ## Hosted payment onek easy process. but ajaxpay ektu tricky..
-        $data = (array) json_decode($request->cart_json);
 
         $post_data = array();
         $post_data['total_amount'] = Cart::getTotal()+60; # You cant not pay less than 10
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_id must be unique
+        $post_data['tran_id'] = uniqid();
+        $post_data['user_id'] = Session::get('id'); 
+        // tran_id must be unique
 
         # CUSTOMER INFORMATION
         $post_data['cus_name'] = $data['cus_name'];
@@ -119,6 +124,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['cus_country'] = "Bangladesh";
         $post_data['cus_phone'] = $data['cus_phone'];
         $post_data['cus_fax'] = "";
+       
 
         # SHIPMENT INFORMATION
         $post_data['ship_name'] = "Store Test";
@@ -155,8 +161,28 @@ class SslCommerzPaymentController extends Controller
             'state' => $post_data['cus_state'],
             'zip' => $post_data['cus_postcode'],
             'transaction_id' => $post_data['tran_id'],
-            'currency' => $post_data['currency']
+            'user_id' => $post_data['user_id'],
+            'currency' => $post_data['currency'],
+            
             ]);
+
+       
+         $order_id = DB::getPdo()->lastInsertId(); //find last id
+
+        //order_details database insert
+        $cartcollection = Cart::getContent();
+        $order_details = array();
+        $order_details['order_id'] =  $order_id;
+
+        foreach ($cartcollection as $cart_list) {
+
+            $order_details['product_id'] = $cart_list->id;
+            $order_details['product_name'] = $cart_list->name;
+            $order_details['product_price'] = $cart_list->price;
+            $order_details['product_sales_quantity'] = $cart_list->quantity;
+            DB::table('order_details')->insert($order_details);
+        }
+
 
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
@@ -197,7 +223,8 @@ class SslCommerzPaymentController extends Controller
                     ->update(['status' => 'Complete']);
 
                 // echo "<br >Transaction is successfully Completed";
-                return view('frontend.pages.success');
+                $categories = Category::all();
+                return view('frontend.pages.success',compact('categories'));
             } else {
                 /*
                 That means IPN did not work or IPN URL was not set in your merchant panel and Transation validation failed.

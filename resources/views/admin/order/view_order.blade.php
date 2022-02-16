@@ -32,8 +32,8 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>{{$orders->Customer->name}}</td>
-                        <td class="center">{{$orders->Customer->mobile}}</td>
+                        <td>{{$orders->name}}</td>
+                        <td class="center">{{$orders->phone}}</td>
 
 
                     </tr>
@@ -61,21 +61,28 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>User</th>
+                        
                         <th>Shipping Address</th>
-                        <th>Mobile No</th>
+                        <th>Address 2</th>
+                        
+                        <th>City</th>
+                        <th>ZIP</th>
+                        
                         <th>Email</th>
-                        <th>Payment Method</th>
+                        <th>Payment</th>
                     </tr>
                     </thead>
                     <tbody>
 
                     <tr>
-                        <td>{{$orders->Shipping->name}}</td>
-                        <td class="center">{{$orders->Shipping->address}}</td>
-                        <td class="center">{{$orders->Shipping->mobile}}</td>
-                        <td class="center">{{$orders->Shipping->email}}</td>
-                        <td class="center">{{$orders->Payment->payment}}</td>
+                       
+                        <td class="center">{{$orders->address}}</td>
+                        <td class="center">{{$orders->address2}}</td>
+                        <td class="center">{{$orders->state}}</td>
+                        <td class="center">{{$orders->zip}}</td>
+                        
+                        <td class="center">{{$orders->email}}</td>
+                        <td class="center">{{$orders->status}}</td>
 
                     </tr>
 
@@ -104,7 +111,7 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Order ID</th>
+                      
                         <th>Product Name</th>
                         <th>Product price</th>
                         <th>Quantity</th>
@@ -116,7 +123,7 @@
                             @foreach ($order_details as $order)
                                 
                              <tr>
-                            <td>{{$order->Order->id}}</td>
+                            
                             <td class="center">{{$order->Product->name}}</td>
                             <td class="center">&#2547; {{$order->product_price}} </td>
                             <td class="center">{{$order->product_sales_quantity}}</td>
@@ -130,7 +137,7 @@
                     <tfoot>
                     <tr>
                         <td colspan="4" style="font-size: 20px;font-weight: 521;text-align: right; color: red"> Total Amount to pay</td>
-                        <td><strong style="font-size: 20px; color: #007cff;">&#2547; {{$orders->total}} </strong></td>
+                        <td><strong style="font-size: 20px; color: #007cff;">&#2547; {{$orders->amount}} </strong></td>
                     </tr>
                     </tfoot>
                 </table>

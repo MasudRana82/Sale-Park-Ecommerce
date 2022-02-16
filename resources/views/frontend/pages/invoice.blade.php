@@ -94,11 +94,11 @@
                         <div class="col-sm-4">
                             <h6 class="mb-3">To:</h6>
                             <div>
-                                <strong>{{$orders->Customer->name}}</strong>
+                                <strong>{{$orders->name}}</strong>
                             </div>
-                            <div>{{$orders->Shipping->address}}</div>
+                            <div>{{$orders->address}}</div>
                             
-                            <div>{{$orders->Shipping->mobile}}</div>
+                            <div>{{$orders->mobile}}</div>
                         </div>
                         <div class="col-sm-4">
                            <img src="{{asset('/img/logo.png')}}" alt="" style="height:80px; width:300px;">
@@ -152,7 +152,7 @@
                                             <strong>Total</strong>
                                         </td>
                                         <td class="right">
-                                            <strong>: &#2547; {{$orders->total}}</strong>
+                                            <strong>: &#2547; {{$orders->amount}}</strong>
                                         </td>
                                     </tr>
                                 </tbody>

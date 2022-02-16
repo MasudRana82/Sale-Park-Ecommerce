@@ -42,8 +42,8 @@
 								  <th style="width: 5%">Transaction id</th>
 								  <th style="width: 5%">Payment</th>
                                   
-								  <th style="width: 15%">Status</th>								  
-								  <th style="width: 25%">action</th>
+								  <th style="width: 10%">Status</th>								  
+								  <th style="width: 15%">Action</th>
 							  </tr>
 						  </thead> 
                                  @foreach ($orders as $order)
@@ -53,18 +53,18 @@
                               
 							<tr>
 								<td>{{$order->id}}</td>
-								<td class="center">{{$order->Customer->name}}</td>
-								<td class="center">&#2547 {{$order->total}}</td>
+								<td class="center">{{$order->name}}</td>
+								<td class="center">&#2547 {{$order->amount}}</td>
 								{{-- Carbon is a laravel date & time package.( iA use for 12 hours) --}}
 								<td class="center">{{Carbon\Carbon::parse($order->created_at)->format('M d,Y,h:iA')}}</td> 
-								<td class="center">1234</td>
-                                <td class="center">pending</td>
+								<td class="center">{{$order->transaction_id}}</td>
+                                <td class="center">{{$order->status}}</td>
                              
                                 <td class="center">
 									
 										<span class="label label-success">active</span>
 									
-										<span class="label label-danger">deactive</span>
+										
 									
 									
 								</td>
@@ -86,7 +86,7 @@
 								</div>
 								<div class="span4">
 									<a class="btn btn-info" href="{{url('/order-view/'.$order->id)}}">
-									MORE
+								VIEW
 									</a>
 								</div>
 								<div class="span3">

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\OrderDetail;
-use App\Models\Shipping;
+use Session;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -19,8 +19,9 @@ class OrderController extends Controller
     public function order_view($id)
     {
         
-        $orders = Order::find($id);
-        $order_details = OrderDetail::where('order_id',$id)->get();
+        $orders = Order::find($id); //find order table single id
+        //find user id
+        $order_details = OrderDetail::where('order_id', $id)->get();
         
         return view('admin.order.view_order',compact('orders', 'order_details' ));
     }
