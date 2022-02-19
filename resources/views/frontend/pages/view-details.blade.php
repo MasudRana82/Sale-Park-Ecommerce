@@ -107,15 +107,15 @@
 							<form action="{{url('/add-to-cart')}}" method="post">
 												@csrf
 											<div class="add-to-cart">
-												{{-- <div class="qty-label">
+												<div class="qty-label">
 															Qty
 															<div class="input-number">
-																<input type="number">
+																<input type="number" name="quantity" value="1">
 																<span class="qty-up">+</span>
 																<span class="qty-down">-</span>
 															</div>
-														</div> --}}
-												<input type="hidden" name="quantity" value="1">
+														</div>
+												
 												<input type="hidden" name="id" value="{{$products->id}}">
 												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
 											</div>
@@ -127,7 +127,7 @@
 												<div class="product-btns">
 													
 														<input type="hidden" name="id" value="{{$products->id}}">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp"> add to wishlist</span></button>
 												</form>
 							</ul>
 
