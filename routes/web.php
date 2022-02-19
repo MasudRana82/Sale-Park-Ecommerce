@@ -34,7 +34,7 @@ Route::post('/add-to-cart', [CartController::class, 'add_to_cart']);
 Route::get('/delete{id}', [CartController::class, 'delete']);
 
 //wishlist routes
-Route::post('/add-wishlist', [WishlistController::class, 'add_wishlist']);
+Route::get('/add-wishlist{id}', [WishlistController::class, 'add_wishlist']);
 Route::post('/wishlist-delete/{id}', [WishlistController::class, 'delete']);
 Route::get('/wishlist', [WishlistController::class, 'wishlist']);
 

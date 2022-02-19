@@ -17,14 +17,14 @@ class WishlistController extends Controller
 
         return view('frontend.pages.wishlist', compact('categories', 'wdata'));
     }
-    public function add_wishlist(Request $req)
+    public function add_wishlist($id)
     {
         $customer_id = Session::get('id');
         if ($customer_id) {
 
         $wdata = new Wishlist();
         $wdata->user_id=Session::get('id');
-        $wdata->product_id = $req->id;
+        $wdata->product_id = $id;
         $wdata->save();
         notify()->success('Product successfully in wishlist!');
         return redirect()->back();
