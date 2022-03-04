@@ -20,12 +20,12 @@ Complete laravel ecommerce Project with ssl commerze payment gateway.
 - [Laravel 8](https://Laravel.com/)
 - [Bootstrap 4](https://getBootstrap.com/)
 - [Java-script](https://)
-- [Metro admin dashboard(https://)
+- [Metro admin dashboard](https://)
 - [PHP](https://)
 - [Add to cart package](https://laravel.com)
 - [Sweetaleart 3](https://)
 - [JQuery](https://jquery.com)
-- MySql (https://)
+- [MySql] (https://)
 
 
 [![Product Name Screen Shot][project-screenshot1]](https://example.com)
