@@ -12,6 +12,7 @@ Complete laravel ecommerce Project with ssl commerze payment gateway.
 - category wise product
 - related product
 - top selling product
+- Search
 
 
 
@@ -25,7 +26,7 @@ Complete laravel ecommerce Project with ssl commerze payment gateway.
 - [Add to cart package](https://laravel.com)
 - [Sweetaleart 3](https://)
 - [JQuery](https://jquery.com)
-- [MySql] (https://)
+- [MySql](https://)
 
 
 [![Product Name Screen Shot][project-screenshot1]](https://example.com)
