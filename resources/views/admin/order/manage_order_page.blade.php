@@ -42,7 +42,7 @@
 								  <th style="width: 5%">Transaction id</th>
 								  <th style="width: 5%">Payment</th>
                                   
-								  <th style="width: 10%">Status</th>								  
+								  <th style="width: 10%">Order Status</th>								  
 								  <th style="width: 15%">Action</th>
 							  </tr>
 						  </thead> 
@@ -58,30 +58,39 @@
 								{{-- Carbon is a laravel date & time package.( iA use for 12 hours) --}}
 								<td class="center">{{Carbon\Carbon::parse($order->created_at)->format('M d,Y,h:iA')}}</td> 
 								<td class="center">{{$order->transaction_id}}</td>
-                                <td class="center">{{$order->status}}</td>
+                                
+									@if ($order->status=='Complete')
+									<td class="center">	<span class="label label-success">{{$order->status}} </span></td>
+									@else
+									<td class="center">	<span class="label label-danger">{{$order->status}} </span></td>
+									@endif
+
                              
                                 <td class="center">
 									
+										@if ($order->order_status==1)
 										<span class="label label-success">active</span>
-									
+									@else
+										<span class="label label-danger">deactive</span>
+									@endif
 										
 									
 									
 								</td>
 								<td class="row">
 								<div class="span1"></div>
-								<div class="span3">
+									<div class="span2">
 									
-									
-										{{-- <a class="btn btn-success" href="{{url('/brand-status')}}">
+									@if($order->order_status==0)
+										<a class="btn btn-success" href="{{url('/cat-status')}}">
 										<i class="halflings-icon white thumbs-down"></i>  
-									</a> --}}
+									</a>
 									
-								
-									 <a class="btn btn-danger" href="{{url('/brand-status')}}">
+									@else
+									 <a class="btn btn-danger" href="{{url('/cat-status')}}">
 										<i class="halflings-icon white thumbs-up"></i>  
 									</a>
-								
+									@endif
 
 								</div>
 								<div class="span4">

@@ -126,25 +126,45 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $sizes =explode(',',$request->size);
-        $color =explode(',',$request->color);
+
+        $images =array();
+        if($files = $request->file('file'))
+        {
+           foreach($files as $file)
+           {
+                $name =$file->getClientOriginalName();
+                $filename_devide =explode('.',$name);
+                $fileName =$filename_devide[0];
+                $fileName .=time();
+                $fileName .='.';
+                $fileName .= $filename_devide[1];
+                $file->move('image',$fileName);
+                $images[]=$fileName;
+                
+
+           }
+           $product['image']= implode('|',$images);
+
+        }
         $update = $product->update([
-            'size'=>json_encode($sizes),
+            
             'code'=>$request->code,
             'name'=>$request->name,
             'cat_id'=>$request->category,
             'subcat_id'=>$request->subcategory,
             'br_id'=>$request->brand,
-            'unit'=>$request->unit,
-            'color'=>$request->color,
-            'size'=>$request->size,
+            'unit_id'=>$request->unit,
+            'size_id' => $request->size ,
+            'color_id' => $request->color,
+            
+            
             'description'=>$request->description,
             'price'=>$request->price,
-            // 'image'=>$request->image,
+             'image'=> $product['image'],
         ]);
         if ($update){
            
-             return redirect('/size')->with('messege','Product update successfully');
+             return redirect('/product')->with('messege','Product update successfully');
         }
     }
 

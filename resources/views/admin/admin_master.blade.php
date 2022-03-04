@@ -524,20 +524,13 @@
 		
 
 		<script src="{{asset('admin/js/custom.js')}}"></script>
-		<script>
-			CKEDITOR.replace( 'cleditor', {
-	extraPlugins: 'image2',
-	removePlugins: 'image',
-	on: {
-		dialogShow: function( evt ) {
-			var dialog = evt.data;
-			if ( dialog._.name === 'image2' && !dialog.widget.isReady() ) {
-				evt.data.getContentElement( 'info', 'hasCaption' ).setValue( true );
-			}
-		}
-	}
-} );
-		</script>
+	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+		
+		{{-- <script type="text/javascript">
+			$(document).ready(function() {
+			$('.ckeditor').ckeditor();
+			});
+</script> --}}
 	<!-- end: JavaScript-->
 	
 </body>

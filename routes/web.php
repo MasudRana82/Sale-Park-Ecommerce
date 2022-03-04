@@ -86,8 +86,8 @@ Route::get('/logout',[SuperAdminController::class,'logout']);
 
 //Product route here
 Route::resource('/product/',ProductController::class); //resource route
-Route::get('/product/edit{category}',[ProductController::class,'edit']); 
-Route::put('/product/update{category}',[ProductController::class,'update']); 
+Route::get('/product/edit{product}',[ProductController::class,'edit']); 
+Route::put('/product/update{product}',[ProductController::class,'update']); 
 Route::put('/product/delete{category}',[ProductController::class,'destroy']);
 Route::get('/product-status{category}',[ProductController::class,'change_status']);
 

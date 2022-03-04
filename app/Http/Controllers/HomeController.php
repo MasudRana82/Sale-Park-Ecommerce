@@ -136,6 +136,7 @@ class HomeController extends Controller
     {
         
         $products = Product::orderBy('id','desc')->where('name','LIKE','%'.$req->product.'%'); // LIKE used in a Search Technic. //ei condition e all data cole asce
+
         if($req->category!="ALL") $products->where('cat_id',$req->category); // ei condition e  categorir sathe mil rekhe product dekhano hoyece
 
         $products = $products->get(); //get all data with previous condition
@@ -143,6 +144,7 @@ class HomeController extends Controller
         $categories = Category::all();
         $subcategories = SubCategory::all();
         $brands = Brand::all();
+        
         //top selling products
         $top_sales = DB::table('products')
         ->leftJoin('order_details', 'products.id', '=', 'order_details.product_id') //products table  er id er sathe order_details er product_id  er join kora hoice

@@ -64,7 +64,7 @@
 								{{-- <td class="center">{{$product->id}}</td> --}}
 								<td class="center">{{$product->code}}</td>
 								<td class="center">{{$product->name}}</td>
-								<td class="center">{{$product->description}}</td>
+								<td class="center">{!!$product->description!!}</td>
 								<td class="center">&#2547;{{$product->price}}</td>
 								<td>
 									@foreach ($product->image as $images)

@@ -32,7 +32,7 @@ class ColorController extends Controller
      */
         public function store(Request $request)
     {
-        $sizes =explode(',',$request->name);// explode means divide. here we saparete data using comma.
+        $sizes =explode(',',$request->name);// !explode means divide. here we saparete data using comma.
         $size= new Color;
         $size->name=json_encode($sizes); //save the data with json encode  
   

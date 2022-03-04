@@ -43,11 +43,11 @@ class CategoryController extends Controller
         $category->id=$request->category;
         $category->name=$request->name;
         $category->description=$request->description;
-
-        //image save in db in one line
+ 
+        // ! image save in db in one line
         $category->image=$request->image->store('category'); 
 
-        //image save in db in multiple line
+        // ! image save in db in multiple line
         // if($request->hasfile('image'))
         // {
         //     $file=$request->file('image');
@@ -57,7 +57,7 @@ class CategoryController extends Controller
         //     $category->image=$filename;
         // }
         
-         $category->save(); //all data save
+         $category->save(); //?all data save
          return redirect()->back()->with('messege','Category created successfully'); //back function j page e cilo oi page e abr niya ase
         
         

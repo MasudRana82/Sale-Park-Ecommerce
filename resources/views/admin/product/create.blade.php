@@ -127,7 +127,7 @@
                         <div class="control-group hidden-phone">
                             <label class="control-label" for="textarea2">Description</label>
                              <div class="controls">
-                             <textarea class="cleditor" name="description" rows="3" required></textarea>
+                             <textarea class="ckeditor" name="description" rows="12" required></textarea>
                               </div>
                              </div>
 
