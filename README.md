@@ -13,6 +13,7 @@ Complete laravel ecommerce Project with ssl commerze payment gateway.
 - related product
 - top selling product
 - Search
+- invoice
 
 
 
